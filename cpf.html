@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      if (document.addEventListener) {
+        document.addEventListener("contextmenu", function (e) {
+          e.preventDefault();
+          return false;
+        });
+      } else {
+        //Versões antigas do IE
+        document.attachEvent("oncontextmenu", function (e) {
+          e = e || window.event;
+          e.returnValue = false;
+          return false;
+        });
+      }
+    </script>
+    <script src="sdks/web/v16/OneSignalSDK.page.js" defer=""></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(function(OneSignal) {
+        OneSignal.init({
+          appId: "1636cdc6-e648-4f56-813e-ad5e223e00db",
+        });
+      });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!--     <meta property="og:image" itemprop="image" content="https://resgate-pontos.up.railway.app/club2.png" /> -->
+    <meta name="description" content="O Feirão Serasa Limpa Nome é um evento da Serasa em que as empresas parceiras do Serasa Limpa Nome disponibilizam novas ofertas e acordos para negociação de dívidas.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Feirão Serasa Limpa Nome">
+    <meta property="og:site_name" content="Feirão Serasa">
+    <meta property="og:description" content="O Feirão Serasa Limpa Nome é um evento da Serasa em que as empresas parceiras do Serasa Limpa Nome disponibilizam novas ofertas e acordos para negociação de dívidas.">
+    <meta property="og:image" itemprop="image" content="ogImage.jpeg">
+    <title>Feirão Serasa</title>
+    <link rel="stylesheet" href="npm/toastify-js/src/toastify.min.css">
+    <script src="npm/toastify-js-1"></script>
+    <link href="css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <!-- Logotipo do Serasa -->
+      <img src="ser.svg" alt="Logo do Serasa" class="logo">
+    </header>
+    <div id="chat"></div>
+
+    <script src="chatbot.js"></script>
+  </body>
+</html>

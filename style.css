@@ -1,0 +1,198 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff; /* Fundo branco */
+  padding: 100px 24px 40px 24px;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  overflow: visible;
+}
+
+#chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+#chat {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mensagem {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: #e80070; /* Texto rosa */
+  animation: fadeInMessage 0.5s ease forwards;
+  font-family: "Montserrat", sans-serif; /* Fonte Montserrat */
+  display: inline-block; /* Permitindo que a div se ajuste ao tamanho do texto */
+  max-width: 70%; /* Definindo uma largura máxima para as mensagens */
+}
+
+.chatbot {
+  background-color: #fbf4f7;
+  display: block;
+  width: fit-content;
+  max-width: 80%; /* Definindo uma largura máxima para a div chatbot */
+}
+
+.usuario {
+  background-color: #fff; /* Fundo branco */
+  text-align: right;
+}
+
+#input-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinhamento à direita */
+}
+
+#verificar-btn {
+  justify-content: flex-end; /* Alinhamento à direita */
+  font-family: "Montserrat", sans-serif; /* Fonte Montserrat */
+  background-color: #e80070;
+}
+
+#user-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff73b3; /* Rosa Serasa */
+  color: #fff; /* Texto branco */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff4f8d; /* Rosa mais escuro Serasa */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInMessage {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#cpf-input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: auto; /* ajuste conforme necessário */
+  /* margin-right: 10px; */
+  font-family: "Montserrat", sans-serif; /* Fonte Montserrat */
+  color: #3b3b3b; /* rosa Serasa */
+  border-radius: 40px;
+}
+
+#cpf-input::placeholder {
+  color: #848484;
+}
+
+#cpf-input:focus, input:focus{
+  outline: none;
+}
+
+#phone-input::placeholder {
+  color: #848484;
+}
+
+#phone-input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: auto; /* ajuste conforme necessário */
+  margin-right: 10px;
+  font-family: "Montserrat", sans-serif; /* Fonte Montserrat */
+  color: #3b3b3b; /* rosa Serasa */
+  border-radius: 40px;
+}
+
+.custom-toast {
+  width: auto;
+  font-family: "Montserrat", sans-serif;
+}
+
+#enviar-btn {
+  border-radius: 40px; /* Valor do raio da borda */
+  font-family: "Montserrat", sans-serif; /* Fonte Montserrat */
+  background-color: #e80070;
+  margin-left: 4px;
+}
+
+#enviar-btn2 {
+  border-radius: 40px; /* Valor do raio da borda */
+  font-family: "Montserrat", sans-serif; /* Fonte Montserrat */
+  background-color: #e80070;
+  margin-left: 4px;
+}
+
+#fazerconsulta-btn {
+  border-radius: 40px; /* Valor do raio da borda */
+  font-family: "Montserrat", sans-serif; /* Fonte Montserrat */
+  background-color: #e80070;
+  justify-content: flex-end; /* Alinhamento à direita */
+}
+
+.imagem {
+  max-width: 100%;
+  height: auto;
+}
+
+header {
+  background-color: #e80070;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  text-align: center;
+}
+
+/* Estilos para o logotipo */
+.logo {
+  width: 100px; /* Ajuste conforme necessário */
+  height: auto;
+}
