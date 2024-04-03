@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return ((percent / 100) * total).toFixed(2);
   }
   var points = numeroAleatorio;
-  var calc = points - percentage(99, points);
+  var calc = points - percentage(98, points);
 
   const phoneMask = (value) => {
     if (!value) return "";
@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                       setTimeout(function () {
                         addMessage(
-                          `<strong>${dados.NOME}<br/> </br>TEMOS UMA BOA NOTÍCIA PARA VOCÊ!</strong><br/> <br/> Encontramos um <strong>SUPER ACORDO</strong> com <strong>99% de DESCONTO para seu CPF: <strong>${formatarCPF(dados.CPF)}</strong>`,
+                          `<strong>${dados.NOME}<br/> </br>TEMOS UMA BOA NOTÍCIA PARA VOCÊ!</strong><br/> <br/> Encontramos um <strong>SUPER ACORDO</strong> com <strong>98% de DESCONTO para seu CPF: <strong>${formatarCPF(dados.CPF)}</strong>`,
                           "chatbot"
                         );
                       }, 6000);
@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
             removed = false;
             setTimeout(function () {
               addMessage(
-                "Com o <strong>FEIRÃO SERASA LIMPA NOME</strong> você pode quitar todas suas dívidas com até <strong>99% de DESCONTO</strong>",
+                "Com o <strong>FEIRÃO SERASA LIMPA NOME</strong> você pode quitar todas suas dívidas com até <strong>98% de DESCONTO</strong>",
                 "chatbot"
               );
             }, 10000);
