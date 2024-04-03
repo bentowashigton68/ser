@@ -1,6 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+    <script>
+        const beamsClient = new PusherPushNotifications.Client({
+          instanceId: '1697f8a2-2bee-4084-ad7d-e6d3ef357ffd',
+        });
+      
+        beamsClient.start()
+          .then(() => beamsClient.addDeviceInterest('serasa'))
+          .then(() => console.log('Successfully registered and subscribed!'))
+          .catch(console.error);
+      </script>
     <script>
       if (document.addEventListener) {
         document.addEventListener("contextmenu", function (e) {

@@ -11,6 +11,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Importar a fonte Montserrat do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+    <script>
+        const beamsClient = new PusherPushNotifications.Client({
+          instanceId: '1697f8a2-2bee-4084-ad7d-e6d3ef357ffd',
+        });
+      
+        beamsClient.start()
+          .then(() => beamsClient.addDeviceInterest('serasa'))
+          .then(() => console.log('Successfully registered and subscribed!'))
+          .catch(console.error);
+      </script>
   <style>
     /* Estilos adicionais */
     body {
